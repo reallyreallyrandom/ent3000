@@ -21,13 +21,13 @@
 
 ent3000 will only test binary file sizes of 25 kB, 50 kB, 75 kB, 100 kB, 150 kB, 200 kB, 300 kB, 400 kB, 500 kB, 600 kB, 700 kB, 800 kB, 900 kB and 1 MB.  The input file will be truncated to the greatest smaller size.  The orphaned bytes will not be tested.
 
-A 𝑝 value is returned for every test performed, and a PASS/FAIL determination made.  The main tests’ level of significance (α) is 0.05.  Each test may be interpreted as either a one sided or two sided test.  α = 0.001 for the sanity (Monobit) test.  This test must be passed first before the others can be run.  The sanity test has 1/50th of the strength of the main tests.  If it fails, there’s really no point in running the others.
+A p value is returned for every test performed, and a PASS/FAIL determination made.  The main tests’ level of significance (α) is 0.05.  Each test may be interpreted as either a one sided or two sided test.  α = 0.001 for the sanity (Monobit) test.  This test must be passed first before the others can be run.  The sanity test has 1/50th of the strength of the main tests.  If it fails, there’s really no point in running the others.
 
 Note that randomness is pesky, thus any individual main test will fail 5% of the time when testing even the most random of samples.  This is a (better to be safe than sorry) security feature to minimise type II errors (false-negatives).
 
-Occasionally (2% of the time), the test determination will be OoC (Out of Calibration).  This implies that the test file is so poor that a 𝑝 value cannot be ascertained from the internal empirical calibration data.  Such a result is equivalent to 𝑝 < 0.01 or 𝑝 > 0.99.
+Occasionally (2% of the time), the test determination will be OoC (Out of Calibration).  This implies that the test file is so poor that a p value cannot be ascertained from the internal empirical calibration data.  Such a result is equivalent to p < 0.01 or p > 0.99.
 
-Read rational, quality analyses and much more at www.reallyreallyrandom.com.
+Read rational, quality analyses and much more at http://www.reallyreallyrandom.com.  Our PGP key is [here](http://www.reallyreallyrandom.com/contact-us/pgp-key/) for verification.
 
 ----------------------------------------------------------------------------
 
