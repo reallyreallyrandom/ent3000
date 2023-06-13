@@ -50,7 +50,7 @@ public class MeanTests {
 
     @Test
     void testGetPValue() {
-        RandomGenerator rng = new Random(18);
+        RandomGenerator rng = new Random(30);
         int noSamples = 500_000;
         byte[] samples = new byte[noSamples];
         rng.nextBytes(samples);

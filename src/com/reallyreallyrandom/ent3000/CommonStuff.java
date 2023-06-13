@@ -36,6 +36,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class CommonStuff {
+    final static int NO_CALIBRATION_POINTS = 25;
+
     public String readFromJARFile(String filename) {
         StringBuffer sb = null;
 
@@ -48,7 +50,8 @@ public class CommonStuff {
 
             while ((line = br.readLine()) != null) {
                 sb.append(line);
-                sb.append("\n");     // FIXME Adds unnecessary returns to the calibration file, but needed for the help file.
+                sb.append("\n"); // FIXME Adds unnecessary returns to the calibration file, but needed for the
+                                 // help file.
             }
 
             br.close();
@@ -65,6 +68,8 @@ public class CommonStuff {
     public double getPValue(String test, int size, double testStatistic) {
         // FIXME Can this be written any neater?
         // See https://www.geeksforgeeks.org/parse-json-java/
+        // TODO Can we automatically read the number of calibration points in the cal
+        // file?
         String json = readFromJARFile("thetests/calibration.json");
         JSONParser parser = new JSONParser();
         double p = 0;
@@ -79,9 +84,9 @@ public class CommonStuff {
             JSONArray xJValues = (JSONArray) jsonObject.get("ts");
             JSONArray yJValues = (JSONArray) jsonObject.get("p");
 
-            double[] x = new double[15];
-            double[] y = new double[15];
-            for (var i = 0; i < 15; i++) {
+            double[] x = new double[NO_CALIBRATION_POINTS];
+            double[] y = new double[NO_CALIBRATION_POINTS];
+            for (var i = 0; i < NO_CALIBRATION_POINTS; i++) {
                 x[i] = (double) xJValues.get(i);
                 y[i] = (double) yJValues.get(i);
             }
@@ -91,7 +96,7 @@ public class CommonStuff {
              * Calibration range : 0.01 > p > 0.99
              * p = -1 means out of calibration range.
              */
-            if ((testStatistic <= x[0]) || (testStatistic >= x[14])) {
+            if ((testStatistic < x[0]) || (testStatistic > x[NO_CALIBRATION_POINTS - 1])) {
                 p = -1;
             } else {
                 SplineInterpolator interpolator = new SplineInterpolator();
@@ -108,5 +113,4 @@ public class CommonStuff {
         return p;
     }
 
-    
 }

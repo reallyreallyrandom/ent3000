@@ -38,7 +38,7 @@ public class CompressionTests {
     @ValueSource(ints = { 25_000, 50_000, 75_000, 100_000, 150_000, 200_000, 300_000, 400_000, 500_000, 600_000,
             700_000, 800_000, 900_000, 1_000_000 })
     void testGetPValues(int sizes) {
-        RandomGenerator rng = new Random(1);
+        RandomGenerator rng = new Random(9);
         int noSamples = sizes;
         byte[] samples = new byte[noSamples];
         rng.nextBytes(samples);
