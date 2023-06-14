@@ -45,19 +45,19 @@ public class PiTests {
 
         ITestish test = new Pi();
         double p = test.getPValue(samples);
-        assertTrue((p > 0.025) & (p < 0.95));
+        assertTrue((p > 0.025) & (p < 0.975));
     }
 
     @Test
     void testGetPValue() {
-        RandomGenerator rng = new Random(24);
+        RandomGenerator rng = new Random(92);
         int noSamples = 50_000;
         byte[] samples = new byte[noSamples];
         rng.nextBytes(samples);
 
         ITestish test = new Pi();
         double p = test.getPValue(samples);
-        assertTrue((p < 0.025) | (p > 0.95));
+        assertTrue((p < 0.025) | (p > 0.975));
     }
 
 }

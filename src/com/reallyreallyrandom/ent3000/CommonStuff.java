@@ -30,6 +30,7 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.math3.analysis.interpolation.SplineInterpolator;
 import org.apache.commons.math3.analysis.polynomials.PolynomialSplineFunction;
+import org.apache.commons.math3.distribution.NormalDistribution;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -108,6 +109,23 @@ public class CommonStuff {
             System.err.println("Problem parsing calibration data file.");
             System.err.println("Fatal. Exiting...");
             System.exit(-1);
+        }
+
+        return p;
+    }
+
+    // This is for a two tailed test.
+    public double getPValueZ(double Z) {
+        // See piccy:-
+        // https://vitalflux.com/wp-content/uploads/2022/01/z-scores-formula-concepts-and-examples.jpg
+        NormalDistribution norm = new NormalDistribution();
+        double p;
+        if (Z > 0) {
+            p = 2 * (1 - norm.cumulativeProbability(Z));
+        } else if (Z < 0) {
+            p = 2 * norm.cumulativeProbability(Z);
+        } else {
+            p = 0.5;
         }
 
         return p;

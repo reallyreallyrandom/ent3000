@@ -45,7 +45,7 @@ public class MeanTests {
 
         ITestish test = new Mean();
         double p = test.getPValue(samples);
-        assertTrue((p > 0.025) & (p < 0.95));
+        assertTrue((p > 0.025) & (p < 0.975));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class MeanTests {
 
         ITestish test = new Mean();
         double p = test.getPValue(samples);
-        assertTrue((p < 0.025) | (p > 0.95));
+        assertTrue((p < 0.025) | (p > 0.975));
     }
 
 }

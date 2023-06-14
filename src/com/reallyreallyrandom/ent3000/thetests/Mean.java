@@ -22,8 +22,9 @@ SOFTWARE.
 
 package com.reallyreallyrandom.ent3000.thetests;
 
-import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
+
+import com.reallyreallyrandom.ent3000.CommonStuff;
 
 public class Mean implements ITestish {
 
@@ -37,23 +38,9 @@ public class Mean implements ITestish {
         var testStatistic = ss.getMean();
         var stdDev = Math.sqrt((256 * 256 - 1.0) / (12.0 * samples.length));
         var Z = (testStatistic - 127.5) / stdDev;
+        CommonStuff cs = new CommonStuff();
+        double p = cs.getPValueZ(Z);
 
-
-        // TODO Put into common stuff & generate tests.
-         ///////////////////////////////////////////////
-
-        // See piccy: https://vitalflux.com/wp-content/uploads/2022/01/z-scores-formula-concepts-and-examples.jpg
-        NormalDistribution norm = new NormalDistribution();
-        var p = 0.0;
-        if (Z > 0) {
-            p = 2 * (1 - norm.cumulativeProbability(Z));
-        } else if (Z < 0) {
-            p = 2 * norm.cumulativeProbability(Z);
-        } else {
-            p = 0.5;
-        }
-
-        ///////////////////////////////////////////////////
         return p;
     }
 

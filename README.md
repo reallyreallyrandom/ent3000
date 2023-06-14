@@ -11,7 +11,7 @@
 
     A new randomness testing suite for TRNG Makers generating in
     the sub 1 MB space.  Successor to John Walker’s venerable `ent`.
-        Call as:  java -jar ent3000.jar [options] [input-file]
+        Call as:  java -jar ent3000xxx.jar [options] [input-file]
 
         Options:     --help   Print this message.
         input-file:           The file of binary samples to be tested.  

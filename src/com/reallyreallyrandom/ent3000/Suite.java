@@ -57,7 +57,7 @@ public class Suite {
         System.out.println("\nent3000 starting...");
         System.out.println("--help option to display this help.");
         String inFile = null;
-        // TODO Allow for "--terse"   Terse output in CSV format" for QA purposes.
+        // TODO Allow for "--terse" Terse output in CSV format" for QA purposes.
         try {
             if (args.length > 0) {
                 inFile = args[0];
@@ -68,7 +68,7 @@ public class Suite {
                     System.exit(0);
                 }
             } else {
-                inFile = "internal_CSPRNG"; 
+                inFile = "internal_CSPRNG";
             }
             Suite ent = new Suite();
             ent.runTests(inFile);
@@ -82,10 +82,11 @@ public class Suite {
     // TODO Create 2nd form of prettyPrint for the QA output format.
     // TODO Is (pValue == -2) to be dealt with here too?
     public void prettyPrintResult(String testName, double pValue, String testComment) {
-        if (pValue == -1) {
-            System.out.println(testName + ", OoC.  FAIL.");
+        if (pValue == -1) {                                      
+            System.out.printf("%-15s  %s  %n", testName + ",", "OoC,          FAIL.");
         } else {
-            System.out.println(testName + ", p = " + String.format("%.3f", pValue) + ".  " + testComment);
+            String pOutput = "p = " + String.format("%.3f", pValue) + ",  ";
+            System.out.printf("%-15s  %s  %s  %n", testName + ",", pOutput, testComment);
         }
     }
 
@@ -139,7 +140,7 @@ public class Suite {
         pValue = test.getPValue(samples);
         if (pValue >= SANITY_ALPHA) {
             System.out.println("Sane sample file. Good.");
-            System.out.println("-----------------------");
+            System.out.println("------------------------------------");
         } else {
             System.out.println("Insane sample file. Bad.");
             System.out.println("Exit.");
@@ -200,7 +201,7 @@ public class Suite {
         }
         prettyPrintResult("UnCorrelation", pValue, testComment);
 
-        System.out.println("-----------------------");
+        System.out.println("------------------------------------");
         System.out.println("Finished.");
     }
 

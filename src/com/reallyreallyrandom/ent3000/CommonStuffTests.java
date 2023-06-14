@@ -1,5 +1,6 @@
 package com.reallyreallyrandom.ent3000;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,7 @@ public class CommonStuffTests {
     void testWithBadCsvSource(String test, int size, double testStatistic) {
         CommonStuff cs = new CommonStuff();
         double p = cs.getPValue(test, size, testStatistic);
-        assertTrue(p == -1);   // FIXME How is this handled later? Is there a (p == -2) also?
+        assertTrue(p == -1); // FIXME How is this handled later? Is there a (p == -2) also?
     }
 
     @ParameterizedTest
@@ -58,6 +59,23 @@ public class CommonStuffTests {
         CommonStuff cs = new CommonStuff();
         double p = cs.getPValue(test, size, testStatistic);
         assertTrue((p > 0.01) && (p < 0.99));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "-2",
+            "2"
+    })
+    void testAlgabraicP(double Z) {
+        CommonStuff cs = new CommonStuff();
+        double p = cs.getPValueZ(Z);
+        assertEquals(0.042, p, 0.1);
+    }
+    @Test
+    void testAlgabraicP0() {
+        CommonStuff cs = new CommonStuff();
+        double p = cs.getPValueZ(0);
+        assertEquals(0.5, p, 0.00001);
     }
 
 }
