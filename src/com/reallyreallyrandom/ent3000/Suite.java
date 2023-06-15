@@ -44,20 +44,16 @@ public class Suite {
 
     final static double ALPHA = 0.05;
     final static double SANITY_ALPHA = 0.001;
-
-    // FIXME Can this enum be removed?
-    enum TestType {
-        SINGLE_HIGHSIDE,
-        SINGLE_LOWSIDE,
-        TWO_SIDED
-    }
+    final static int[] ACCEPTABLE_SAMPLE_SIZES = { 25_000, 50_000, 75_000, 100_000, 150_000, 200_000, 300_000, 400_000,
+            500_000, 600_000,
+            700_000, 800_000, 900_000, 1_000_000 };
 
     // TODO Use library like https://picocli.info/ for arguments handling.
     public static void main(String[] args) {
         System.out.println("\nent3000 starting...");
         System.out.println("--help option to display this help.");
         String inFile = null;
-        // TODO Allow for "--terse" Terse output in CSV format" for QA purposes.
+
         try {
             if (args.length > 0) {
                 inFile = args[0];
@@ -79,10 +75,9 @@ public class Suite {
         }
     }
 
-    // TODO Create 2nd form of prettyPrint for the QA output format.
     // TODO Is (pValue == -2) to be dealt with here too?
     public void prettyPrintResult(String testName, double pValue, String testComment) {
-        if (pValue == -1) {                                      
+        if (pValue == -1) {
             System.out.printf("%-15s  %s  %n", testName + ",", "OoC,          FAIL.");
         } else {
             String pOutput = "p = " + String.format("%.3f", pValue) + ",  ";
@@ -93,18 +88,15 @@ public class Suite {
     // TODO Explain the justification for these, i.e. the 25_000 min. and the
     // 1_000_000 max.
     public byte[] truncate(byte[] array) {
-        int[] NO_SAMPLES = { 25_000, 50_000, 75_000, 100_000, 150_000, 200_000, 300_000, 400_000, 500_000, 600_000,
-                700_000, 800_000, 900_000, 1_000_000 };
-
-        if (array.length < NO_SAMPLES[0]) {
+        if (array.length < ACCEPTABLE_SAMPLE_SIZES[0]) {
             System.err.println("Sample file is too small.");
             System.err.println("Exit.");
             System.exit(-1);
         }
 
         byte[] truncated = null;
-        for (int i = NO_SAMPLES.length - 1; i >= 0; i--) {
-            int target = NO_SAMPLES[i];
+        for (int i = ACCEPTABLE_SAMPLE_SIZES.length - 1; i >= 0; i--) {
+            int target = ACCEPTABLE_SAMPLE_SIZES[i];
 
             if (array.length >= target) {
                 truncated = new byte[target];
@@ -121,16 +113,16 @@ public class Suite {
 
         if (filename == "internal_CSPRNG") {
             RandomGenerator rng = SecureRandom.getInstance("NativePRNG");
-            int noFakeSamples = rng.nextInt(25_000, 1_500_000);
+            int noFakeSamples = ACCEPTABLE_SAMPLE_SIZES[rng.nextInt(ACCEPTABLE_SAMPLE_SIZES.length)];
             samples = new byte[noFakeSamples];
             rng.nextBytes(samples);
-            samples = truncate(samples);
             System.out.println("Testing internal Native CSPRNG.");
+            System.out.println("Testing " + samples.length + " bytes.");
         } else {
             samples = Files.readAllBytes(Paths.get(filename));
             samples = truncate(samples);
+            System.out.println("Testing first " + samples.length + " bytes.");
         }
-        System.out.println("Testing first " + samples.length + " bytes.");
 
         ITestish test;
         double pValue;
