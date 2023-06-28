@@ -71,6 +71,7 @@ public class CommonStuff {
         // See https://www.geeksforgeeks.org/parse-json-java/
         // TODO Can we automatically read the number of calibration points in the cal
         // file?
+        // TODO Amend config file to : ,"Size": sizeNumber,
         String json = readFromJARFile("thetests/calibration.json");
         JSONParser parser = new JSONParser();
         double p = 0;
