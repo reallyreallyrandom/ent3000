@@ -24,8 +24,6 @@ public class CommonStuffTests {
 
     @ParameterizedTest
     @CsvSource({
-            "pi, 50_000, 3.14159",
-            "pi, 400_000, 3.14159",
             "entropy, 75_000, 7.9975",
             "compression, 900_000, 1_816_326"
     })
@@ -37,8 +35,6 @@ public class CommonStuffTests {
 
     @ParameterizedTest
     @CsvSource({
-            "pi, 500_000, 4.14159",
-            "pi, 700_000, 2.14159",
             "entropy, 150_000, 6.9975",
             "compression, 800_000, 1_000_000"
     })
@@ -50,8 +46,6 @@ public class CommonStuffTests {
 
     @ParameterizedTest
     @CsvSource({
-            "pi, 100_000, 3.138",
-            "pi, 700_000, 3.13993",
             "entropy, 1_000_000, 7.99981390",
             "compression, 75_000, 151_720"
     })
@@ -63,19 +57,20 @@ public class CommonStuffTests {
 
     @ParameterizedTest
     @CsvSource({
-            "-2",
-            "2"
+            "-1.96",
+            "1.96"
     })
     void testAlgabraicP(double Z) {
         CommonStuff cs = new CommonStuff();
         double p = cs.getPValueZ(Z);
-        assertEquals(0.042, p, 0.1);
+        assertEquals(0.049996, p, 0.000001);
     }
+
     @Test
     void testAlgabraicP0() {
         CommonStuff cs = new CommonStuff();
-        double p = cs.getPValueZ(0);
-        assertEquals(0.5, p, 0.00001);
+        double p = cs.getPValueZ(0.0);
+        assertEquals(1, p, 0.01);
     }
 
 }

@@ -30,6 +30,8 @@ import com.reallyreallyrandom.ent3000.CommonStuff;
 
 public class Pi implements ITestish {
 
+    // From:
+    // https://math.stackexchange.com/questions/3518748/variance-of-area-and-average-estimators-in-monte-carlo-estimation-of-pi
     @Override
     public double getPValue(byte[] samples) {
         SummaryStatistics summaryys = new SummaryStatistics();
@@ -38,14 +40,19 @@ public class Pi implements ITestish {
                     (long) (samples[i + 2] & 0xffL) << 16 |
                     (long) (samples[i + 1] & 0xffL) << 8 |
                     (long) (samples[i + 0] & 0xffL) << 0);
-            double normX = x / (Math.pow(256, 4) - 1);
+            double normX = x / (Math.pow(256, 4) - 1D);
             double y = Math.sqrt(1 - (Math.pow(normX, 2)));
             summaryys.addValue(y);
         }
         double testStatistic = 4 * summaryys.getMean();
 
-        CommonStuff cs = new CommonStuff();           
-        double p = cs.getPValue("pi", samples.length, testStatistic);
+        var n = summaryys.getN();
+        var variance = 16D / n * (2D / 3D - Math.pow(Math.PI / 4, 2));
+        var stdDev = Math.sqrt(variance);
+        var Z = (testStatistic - Math.PI) / stdDev;
+        CommonStuff cs = new CommonStuff();
+        double p = cs.getPValueZ(Z);
+
         return p;
     }
 

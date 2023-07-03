@@ -130,7 +130,7 @@ public class Suite {
 
         test = new Sanity();
         pValue = test.getPValue(samples);
-        if (pValue >= SANITY_ALPHA) {
+        if (pValue > SANITY_ALPHA) {
             System.out.println("Sane sample file. Good.");
             System.out.println("------------------------------------");
         } else {
@@ -141,7 +141,7 @@ public class Suite {
 
         test = new Entropy();
         pValue = test.getPValue(samples);
-        if (pValue >= ALPHA) {
+        if (pValue > ALPHA) {
             testComment = "PASS.";
         } else {
             testComment = "FAIL.";
@@ -150,7 +150,7 @@ public class Suite {
 
         test = new Compression();
         pValue = test.getPValue(samples);
-        if (pValue >= ALPHA) {
+        if (pValue > ALPHA) {
             testComment = "PASS.";
         } else {
             testComment = "FAIL.";
@@ -159,7 +159,7 @@ public class Suite {
 
         test = new Chi();
         pValue = test.getPValue(samples);
-        if (pValue >= ALPHA) {
+        if (pValue > ALPHA) {
             testComment = "PASS.";
         } else {
             testComment = "FAIL.";
@@ -168,7 +168,7 @@ public class Suite {
 
         test = new Mean();
         pValue = test.getPValue(samples);
-        if ((pValue > ALPHA / 2) & (pValue < (1 - ALPHA / 2))) {
+        if (pValue > ALPHA) {
             testComment = "PASS.";
         } else {
             testComment = "FAIL.";
@@ -177,7 +177,7 @@ public class Suite {
 
         test = new Pi();
         pValue = test.getPValue(samples);
-        if ((pValue > ALPHA / 2) & (pValue < (1 - ALPHA / 2))) {
+        if (pValue > ALPHA) {
             testComment = "PASS.";
         } else {
             testComment = "FAIL.";

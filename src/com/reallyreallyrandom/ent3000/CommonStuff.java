@@ -119,15 +119,9 @@ public class CommonStuff {
     public double getPValueZ(double Z) {
         // See piccy:-
         // https://vitalflux.com/wp-content/uploads/2022/01/z-scores-formula-concepts-and-examples.jpg
+        // and: https://www.omnicalculator.com/statistics/p-value
         NormalDistribution norm = new NormalDistribution();
-        double p;
-        if (Z > 0) {
-            p = 2 * (1 - norm.cumulativeProbability(Z));
-        } else if (Z < 0) {
-            p = 2 * norm.cumulativeProbability(Z);
-        } else {
-            p = 0.5;
-        }
+        double p = 2.0 - (2.0 * norm.cumulativeProbability(Math.abs(Z)));
 
         return p;
     }
