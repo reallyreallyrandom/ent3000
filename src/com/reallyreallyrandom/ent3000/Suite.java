@@ -116,7 +116,7 @@ public class Suite {
             int noFakeSamples = ACCEPTABLE_SAMPLE_SIZES[rng.nextInt(ACCEPTABLE_SAMPLE_SIZES.length)];
             samples = new byte[noFakeSamples];
             rng.nextBytes(samples);
-            System.out.println("Testing internal Native CSPRNG.");
+            System.out.println("Testing internal native CSPRNG.");
             System.out.println("Testing " + samples.length + " bytes.");
         } else {
             samples = Files.readAllBytes(Paths.get(filename));

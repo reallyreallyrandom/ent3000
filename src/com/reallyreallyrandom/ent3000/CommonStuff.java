@@ -37,7 +37,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class CommonStuff {
-    final static int NO_CALIBRATION_POINTS = 25;
+    final static int NO_CALIBRATION_POINTS = 15;
 
     public String readFromJARFile(String filename) {
         StringBuffer sb = null;
