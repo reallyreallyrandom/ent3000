@@ -37,8 +37,8 @@ Note that randomness is pesky, thus any individual main test will fail
 a (better to be safe than sorry) security feature to minimise type II 
 errors (false-negatives).
 
-Occasionally (2% of the time), the test determination will be OoC (Out 
-of Calibration).  This implies that the test file is so poor that a p 
+Very occasionally (0.002% of the time), the test determination will be OoC 
+(Out of Calibration).  This implies that the test file is so poor that a p 
 value cannot be ascertained from the internal empirical calibration data.  
 Such a result is equivalent to p < 0.01 or p > 0.99.
 

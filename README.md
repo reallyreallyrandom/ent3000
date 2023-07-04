@@ -25,7 +25,7 @@ A p value is returned for every test performed, and a PASS/FAIL determination ma
 
 Note that randomness is pesky, thus any individual main test will fail 5% of the time when testing even the most random of samples.  This is a (better to be safe than sorry) security feature to minimise type II errors (false-negatives).
 
-Occasionally (2% of the time), the test determination will be OoC (Out of Calibration).  This implies that the test file is so poor that a p value cannot be ascertained from the internal empirical calibration data.  Such a result is equivalent to p < 0.01 or p > 0.99.
+Very occasionally (0.002% of the time), the test determination will be OoC (Out of Calibration).  This implies that the test file is so poor that a p value cannot be ascertained from the internal empirical calibration data. 
 
 Read rational, quality analyses and much more at http://www.reallyreallyrandom.com.  Our PGP key is [here](http://www.reallyreallyrandom.com/contact-us/pgp-key/) for verification.
 
