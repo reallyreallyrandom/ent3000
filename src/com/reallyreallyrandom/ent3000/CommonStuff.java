@@ -95,7 +95,6 @@ public class CommonStuff {
 
             /*
              * Check for in /out of calibration range.
-             * Calibration range : 0.01 > p > 0.99
              * p = -1 means out of calibration range.
              */
             if ((testStatistic < x[0]) || (testStatistic > x[NO_CALIBRATION_POINTS - 1])) {
