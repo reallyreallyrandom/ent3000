@@ -32,6 +32,8 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
+import com.reallyreallyrandom.ent3000.CommonStuff;
+
 public class UnCorrelationTests {
   @Test
   void testNoCorrelation() {
@@ -498,11 +500,6 @@ public class UnCorrelationTests {
             Where I may not remove nor be removed.
                                             """;
     byte[] samples = S.getBytes();
-
-    int[] intSamples = new int[samples.length]; // TODO Break this out into CommonStuff.
-    for (int i = 0; i < samples.length; i++) {
-      intSamples[i] = samples[i] & 0xff;
-    }
 
     UnCorrelation test = new UnCorrelation();
     double p = test.getPValue(samples);

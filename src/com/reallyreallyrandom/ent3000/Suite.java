@@ -75,18 +75,19 @@ public class Suite {
         }
     }
 
-    // TODO Is (pValue == -2) to be dealt with here too?
+    
     public void prettyPrintResult(String testName, double pValue, String testComment) {
         if (pValue == -1) {
             System.out.printf("%-15s  %s  %n", testName + ",", "OoC,          FAIL.");
+        } else if (pValue == -2) {
+            System.out.printf("%-15s  %s  %n", testName + ",", "Compression error.");
         } else {
             String pOutput = "p = " + String.format("%.3f", pValue) + ",  ";
             System.out.printf("%-15s  %s  %s  %n", testName + ",", pOutput, testComment);
         }
     }
 
-    // TODO Explain the justification for these, i.e. the 25_000 min. and the
-    // 1_000_000 max.
+
     public byte[] truncate(byte[] array) {
         if (array.length < ACCEPTABLE_SAMPLE_SIZES[0]) {
             System.err.println("Sample file is too small.");

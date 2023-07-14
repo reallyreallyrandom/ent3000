@@ -32,6 +32,4 @@ package com.reallyreallyrandom.ent3000.thetests;
 
 public interface ITestish {
     public double getPValue(byte[] samples);
-
-    public double getPValue(int[] samples);
 }

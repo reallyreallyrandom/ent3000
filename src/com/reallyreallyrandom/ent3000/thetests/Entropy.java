@@ -20,6 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+// spell-checker: disable 
 package com.reallyreallyrandom.ent3000.thetests;
 
 import com.reallyreallyrandom.ent3000.CommonStuff;
@@ -46,10 +47,5 @@ public class Entropy implements ITestish {
         CommonStuff cs = new CommonStuff();
         double p = cs.getPValue("entropy", samples.length, testStatistic);
         return p;
-    }
-
-    @Override
-    public double getPValue(int[] samples) {
-        throw new UnsupportedOperationException("Unimplemented method 'getPValue'");
     }
 }

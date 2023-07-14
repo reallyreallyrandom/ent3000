@@ -55,10 +55,4 @@ public class Pi implements ITestish {
 
         return p;
     }
-
-    @Override
-    public double getPValue(int[] samples) {
-        throw new UnsupportedOperationException("Unimplemented method 'getPValue'");
-    }
-
 }

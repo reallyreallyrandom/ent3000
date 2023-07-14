@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+// spell-checker: disable 
+
 package com.reallyreallyrandom.ent3000.thetests;
 
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
@@ -42,10 +44,5 @@ public class Mean implements ITestish {
         double p = cs.getPValueZ(Z);
 
         return p;
-    }
-
-    @Override
-    public double getPValue(int[] samples) {
-        throw new UnsupportedOperationException("Unimplemented method 'getPValue'");
     }
 }

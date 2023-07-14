@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+// spell-checker: disable 
+
 package com.reallyreallyrandom.ent3000.thetests;
 
 import java.util.BitSet;
@@ -39,11 +41,5 @@ public class Sanity implements ITestish {
         double p = new ChiSquareTest().chiSquareTest(expected, observed);
 
         return p;
-    }
-
-    @Override
-    public double getPValue(int[] samples) {
-        // FIXME Do we still need this signature???
-        throw new UnsupportedOperationException("Unimplemented method 'getPValue'");
     }
 }

@@ -53,13 +53,10 @@ public class Compression implements ITestish {
             p = cs.getPValue("compression", samples.length, testStatistic);
 
         } catch (IOException e) {
-            p = -2; // TODO Implement p = -2 is a test code failure, not a statistical failure.
+            p = -2; 
+            System.err.println("Problem compressing samples file.");
+            System.err.println(e.getMessage());
         }
         return p;
-    }
-
-    @Override
-    public double getPValue(int[] samples) {
-        throw new UnsupportedOperationException("Unimplemented method 'getPValue'");
     }
 }

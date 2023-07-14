@@ -59,10 +59,4 @@ public class UnCorrelation implements ITestish {
         RealMatrix ps = pc.getCorrelationPValues();
         return ps.getEntry(0, 1);
     }
-
-    @Override
-    public double getPValue(int[] samples) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPValue'");
-    }
 }

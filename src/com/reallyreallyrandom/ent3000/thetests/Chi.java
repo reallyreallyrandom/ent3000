@@ -81,10 +81,4 @@ public class Chi implements ITestish {
         double p = new ChiSquareTest().chiSquareTest(expected, observed);
         return p;
     }
-
-    @Override
-    public double getPValue(int[] samples) {
-        throw new UnsupportedOperationException("Unimplemented method 'getPValue'");
-    }
-
 }
